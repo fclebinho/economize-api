@@ -3,14 +3,15 @@ class EntriesController < ApplicationController
 
   # GET /entries
   def index
-    @entries = current_user.entries.all
+		# TODO: Colocar filtros
+    @entries = current_user.entries + current_user.guest_entries
 
-    render json: @entries
+    render json: @entries.to_json(include: [:users, :tags])
   end
 
   # GET /entries/1
   def show
-    render json: @entry
+    render json: @entry.to_json(include: [:users, :tags])
   end
 
   # POST /entries
