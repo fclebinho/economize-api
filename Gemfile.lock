@@ -60,6 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    aes_key_wrap (1.1.0)
+    bindata (2.4.10)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -72,6 +74,13 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    json-jwt (1.13.0)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+    keycloak-api-rails (0.11.1)
+      json-jwt (>= 1.11.0)
+      rails (>= 4.2)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -150,6 +159,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  keycloak-api-rails (= 0.11.1)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
