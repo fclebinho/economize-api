@@ -9,6 +9,8 @@ services:
       - DATABASE_HOST=postgresql
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=password
+      - KEYCLOAK_SERVER_URL=http://identity.plussoftware.com.br/auth
+      - KEYCLOAK_REALM_ID=economize
     ports:
       - 3000:3000
     depends_on:
