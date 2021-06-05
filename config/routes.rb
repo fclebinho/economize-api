@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :entries
   namespace :v1 do
     get 'demo/index'
   end
