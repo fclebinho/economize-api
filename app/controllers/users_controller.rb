@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 
 		def set_user
       @user = User.find_by(email: params[:email])
+			
+			raise ActiveRecord::RecordNotFound unless @user.present?
     end
 
     # Only allow a list of trusted parameters through.

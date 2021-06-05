@@ -1,17 +1,18 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :update, :destroy]
+  before_action :set_entry_or_shared, only: [:show]
+  before_action :set_entry, only: [:update, :destroy]
 
   # GET /entries
   def index
 		# TODO: Colocar filtros
     @entries = current_user.entries + current_user.guest_entries
 
-    render json: @entries.to_json(include: [:users, :tags])
+    render json: @entries
   end
 
   # GET /entries/1
   def show
-    render json: @entry.to_json(include: [:users, :tags])
+    render json: @entry
   end
 
   # POST /entries
@@ -43,6 +44,13 @@ class EntriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
       @entry = current_user.entries.find(params[:id])
+    end
+
+    def set_entry_or_shared
+      @entry = current_user.entries.find_by(id: params[:id])
+      @entry = current_user.guest_entries.find(params[:id]) unless @entry.present?
+			
+			raise ActiveRecord::RecordNotFound unless @entry.present?
     end
 
     # Only allow a list of trusted parameters through.
